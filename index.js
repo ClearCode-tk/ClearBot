@@ -5,6 +5,10 @@ const { Client, MessageEmbed } = require("discord.js");
 // Built-in Modules //
 const Path = require("path");
 const fs = require("fs");
+const globals = require('./globals.json');
+
+// Init DB //
+const { db } = require("./database/firestore");
 
 // Commands //
 const { Commands, CommandList } = require("./libs/commands");
@@ -21,7 +25,7 @@ env.config();
 bot.on("ready", () => {
   console.log("Bot is ready!");
 
-  commands.loadFolder("./commands", bot);
+  commands.loadFolder("./commands", bot, globals);
 });
 
 bot.login(process.env.Token);
